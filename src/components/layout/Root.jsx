@@ -7,7 +7,7 @@ const Root = () => {
   return (
     <Fragment>
       <NavBar />
-      <div className="my-5">
+      <div className="px-10 my-5">
         <Outlet />
       </div>
     </Fragment>
