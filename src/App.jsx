@@ -1,8 +1,10 @@
+import React from "react";
+
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className="bg-blue-500">
+      <h1 className="text-2xl">Hello App</h1>
+    </div>
   );
 }
 
