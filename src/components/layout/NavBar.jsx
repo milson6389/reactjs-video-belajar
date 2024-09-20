@@ -1,18 +1,28 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
 import Profile from "../../assets/img/profile.png";
 
 const NavBar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const isLoggedIn = true;
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("user") != null;
 
   const setIsMobileHandler = () => {
     setIsMobile(!isMobile);
   };
   const setIsActiveHandler = () => {
     setIsActive(!isActive);
+  };
+
+  const logoutHandler = () => {
+    if (confirm("Logout ?")) {
+      localStorage.removeItem("user");
+      setIsMobile(false);
+      setIsActive(false);
+      navigate("/login");
+    }
   };
 
   return (
@@ -59,10 +69,10 @@ const NavBar = () => {
               <a href="/">Pesanan Saya</a>
             </li>
             <li>
-              <a className="text-red" href="/">
+              <button onClick={logoutHandler} className="text-red">
                 Keluar
                 <i className="mx-1 fa-solid fa-arrow-right-from-bracket"></i>
-              </a>
+              </button>
             </li>
           </ul>
         )}
@@ -97,10 +107,10 @@ const NavBar = () => {
                   <a href="/">Pesanan Saya</a>
                 </li>
                 <li className="p-4">
-                  <a className="text-red" href="/">
+                  <button onClick={logoutHandler} className="text-red">
                     Keluar
                     <i className="mx-1 fa-solid fa-arrow-right-from-bracket"></i>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>

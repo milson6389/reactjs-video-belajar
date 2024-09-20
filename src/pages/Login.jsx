@@ -1,10 +1,51 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/img/google_icon.webp";
+import { useRef, useState } from "react";
 
 const Login = () => {
+  const [toggleShow, setToggleShow] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPassword, setIsValidPassword] = useState(true);
+  const emailInput = useRef();
+  const passwordInput = useRef();
+  const navigate = useNavigate();
+
+  const setToggleShowHandler = (e) => {
+    e.preventDefault();
+    setToggleShow(!toggleShow);
+  };
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    setIsValidEmail(true);
+    setIsValidPassword(true);
+
+    if (
+      emailInput.current.value.trim() !== "" &&
+      passwordInput.current.value.trim() !== ""
+    ) {
+      const tempUser = {
+        uid: +new Date(),
+        email: emailInput.current.value.trim(),
+      };
+      localStorage.setItem("user", JSON.stringify(tempUser));
+      navigate("/");
+    } else {
+      if (emailInput.current.value.trim() == "") {
+        setIsValidEmail(false);
+      }
+      if (passwordInput.current.value.trim() == "") {
+        setIsValidPassword(false);
+      }
+    }
+  };
+
   return (
     <div className="flex justify-center items-center my-12 md:my-52">
-      <form className="w-11/12 md:w-1/2 bg-white p-10 flex flex-col justify-center text-center">
+      <form
+        onSubmit={loginHandler}
+        className="w-11/12 md:w-1/2 bg-white p-10 flex flex-col justify-center text-center"
+      >
         <h1 className="text-2xl font-bold">Masuk ke Akun</h1>
         <p className="text-sm font-light">
           Yuk, lanjutin belajarmu di videobelajar.
@@ -18,38 +59,52 @@ const Login = () => {
               type="email"
               name="email"
               id="email"
-              required
+              ref={emailInput}
+              // required
               className="w-full border rounded-md h-10"
             />
+            {!isValidEmail && (
+              <span className="text-red">*Email tidak boleh kosong</span>
+            )}
           </div>
           <div className="flex flex-col items-start mb-3 relative">
             <label htmlFor="password">
               Kata Sandi <span className="text-red">*</span>
             </label>
             <input
-              type="password"
+              type={toggleShow ? "text" : "password"}
               name="password"
               id="password"
-              required
+              ref={passwordInput}
+              // required
               className="w-full border rounded-md h-10"
             />
-            <button className="absolute top-8 end-2">
-              <i class="fa-solid fa-eye-slash"></i>
+            <button
+              onClick={setToggleShowHandler}
+              className="absolute top-8 end-2"
+            >
+              {toggleShow ? (
+                <i className="fa-solid fa-eye"></i>
+              ) : (
+                <i className="fa-solid fa-eye-slash"></i>
+              )}
             </button>
+            {!isValidPassword && (
+              <span className="text-red">*Password tidak boleh kosong</span>
+            )}
           </div>
           <div className="flex justify-end mb-3">
-            <Link to="/" className="text-sm">
+            <Link to="/" className="text-sm hover:text-secondary">
               Lupa Password?
             </Link>
           </div>
           <div className="mb-3">
-            <Link
-              to="/"
+            <button
               type="submit"
               className="bg-primary block w-full rounded-md text-white py-1"
             >
               Masuk
-            </Link>
+            </button>
           </div>
           <div className="mb-3">
             <Link
