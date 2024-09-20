@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
 import Profile from "../../assets/img/profile.png";
 
@@ -16,15 +17,21 @@ const NavBar = () => {
   return (
     <header className="relative px-5 py-2 bg-white h-fit">
       <nav className="md:hidden">
-        <div className="z-10 mx-10">
-          <div className="flex justify-between">
-            <img className="w-1/3 z-10" src={Logo} alt="Logo" />
+        <div className="z-10 mx-5">
+          <div className="flex justify-between items-center">
+            <Link to="/">
+              <img className="w-1/3 z-10" src={Logo} alt="Logo" />
+            </Link>
             <button
               onClick={setIsMobileHandler}
               id="btnToggle"
               className="cursor-pointer z-10"
             >
-              <i className="fa-solid fa-bars"></i>
+              {isMobile ? (
+                <i className="fa-solid fa-x"></i>
+              ) : (
+                <i className="fa-solid fa-bars"></i>
+              )}
             </button>
           </div>
         </div>
@@ -54,8 +61,10 @@ const NavBar = () => {
           </li>
         </ul>
       </nav>
-      <nav className="mx-5 hidden md:flex justify-between">
-        <img className="w-1/5 z-10" src={Logo} alt="Logo" />
+      <nav className="mx-5 hidden md:flex justify-between items-center">
+        <Link to="/">
+          <img className="w-1/3 z-10" src={Logo} alt="Logo" />
+        </Link>
         <div className="flex items-center gap-5">
           <a href="/">Kategori</a>
           <div className="relative">

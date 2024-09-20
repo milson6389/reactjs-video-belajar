@@ -11,7 +11,7 @@ const Root = () => {
       <div className="my-5">
         <Outlet />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 };
