@@ -2,9 +2,8 @@ import Footer from "../components/layout/Footer";
 
 const Home = () => {
   return (
-    <div>
+    <div className="m-5 p-5">
       <h1>Home</h1>
-      <Footer />
     </div>
   );
 };
