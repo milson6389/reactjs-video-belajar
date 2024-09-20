@@ -1,7 +1,77 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
+import FooterLinks from "./FooterLinks";
 
 const Footer = () => {
+  const footerLinkData = [
+    {
+      uid: 1,
+      header: "Kategori",
+      child: [
+        {
+          title: "Digital & Teknologi",
+          target: "/",
+        },
+        {
+          title: "Pemasaran",
+          target: "/",
+        },
+        {
+          title: "Manajemen Bisnis",
+          target: "/",
+        },
+        {
+          title: "Pengembangan Diri",
+          target: "/",
+        },
+        {
+          title: "Desain",
+          target: "/",
+        },
+      ],
+    },
+    {
+      uid: 2,
+      header: "Perusahaan",
+      child: [
+        {
+          title: "Tentang Kami",
+          target: "/",
+        },
+        {
+          title: "FAQ",
+          target: "/",
+        },
+        {
+          title: "Kebijakan Privasi",
+          target: "/",
+        },
+        {
+          title: "Ketentuan Layanan",
+          target: "/",
+        },
+        {
+          title: "Bantuan",
+          target: "/",
+        },
+      ],
+    },
+    {
+      uid: 3,
+      header: "Komunitas",
+      child: [
+        {
+          title: "Tips Sukses",
+          target: "/",
+        },
+        {
+          title: "Blog",
+          target: "/",
+        },
+      ],
+    },
+  ];
+
   return (
     <footer className="bg-white">
       <div className="m-5 p-5">
@@ -14,73 +84,7 @@ const Footer = () => {
             <p>Jl. Usman Effendi No. 50 Lowokwaru, Malang</p>
             <p>+62-877-7123-1234</p>
           </div>
-          <div className="md:flex hidden gap-5">
-            <ul>
-              <li>
-                <span className="font-bold">Kategori</span>
-              </li>
-              <li>
-                <a href="/">Digital & Teknologi</a>
-              </li>
-              <li>
-                <a href="/">Pemasaran</a>
-              </li>
-              <li>
-                <a href="/">Manajemen Bisnis</a>
-              </li>
-              <li>
-                <a href="/">Pengembangan Diri</a>
-              </li>
-              <li>
-                <a href="/">Desain</a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <span className="font-bold">Perusahaan</span>
-              </li>
-              <li>
-                <a href="/">Tentang Kami</a>
-              </li>
-              <li>
-                <a href="/">FAQ</a>
-              </li>
-              <li>
-                <a href="/">Kebijakan Privasi</a>
-              </li>
-              <li>
-                <a href="/">Ketentuan Layanan</a>
-              </li>
-              <li>
-                <a href="/">Bantuan</a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <span className="font-bold">Komunitas</span>
-              </li>
-              <li>
-                <a href="/">Tips Sukses</a>
-              </li>
-              <li>
-                <a href="/">Blog</a>
-              </li>
-            </ul>
-          </div>
-          <div className="flex flex-col md:hidden gap-5">
-            <ul>
-              <li className="flex justify-between font-bold my-2">
-                Kategori
-                <Link to="/">&gt;</Link>
-              </li>
-              <li className="flex justify-between font-bold my-2">
-                Perusahaan<Link to="/">&gt;</Link>
-              </li>
-              <li className="flex justify-between font-bold my-2">
-                Komunitas<Link to="/">&gt;</Link>
-              </li>
-            </ul>
-          </div>
+          <FooterLinks data={footerLinkData} />
         </div>
         <hr />
         <div className="flex flex-col-reverse md:flex-row justify-between mt-5">
