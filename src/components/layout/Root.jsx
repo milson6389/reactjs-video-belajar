@@ -8,10 +8,9 @@ const Root = () => {
   return (
     <Fragment>
       <NavBar />
-      <div className="my-5">
+      <div>
         <Outlet />
       </div>
-      {/* <Footer /> */}
     </Fragment>
   );
 };
