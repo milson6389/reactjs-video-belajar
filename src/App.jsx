@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./components/layout/Root";
+import Public from "./components/layout/Public";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -18,11 +20,19 @@ function App() {
         },
         {
           path: "/login",
-          element: <Login />,
+          element: (
+            <Public>
+              <Login />
+            </Public>
+          ),
         },
         {
           path: "/register",
-          element: <Register />,
+          element: (
+            <Public>
+              <Register />
+            </Public>
+          ),
         },
       ],
     },
