@@ -1,14 +1,31 @@
 import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/img/google_icon.webp";
+import Indonesia from "../assets/img/Indonesia_Flag.png";
+import Singapore from "../assets/img/Singapore_Flag.png";
 import { useRef, useState } from "react";
 
 const Register = () => {
+  const tempPhoneData = [
+    {
+      code: "+62",
+      country: "Indonesia",
+      flag: Indonesia,
+    },
+    {
+      code: "+65",
+      country: "Singapore",
+      flag: Singapore,
+    },
+  ];
+
   const [toggleShow, setToggleShow] = useState(false);
   const [isValidName, setIsValidName] = useState(true);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [isValidPassword2, setIsValidPassword2] = useState(true);
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
+  const [showDropdown, setShowDropDown] = useState(false);
+  const [ddlVal, setDdlVal] = useState(tempPhoneData[0]);
 
   const namaInput = useRef();
   const emailInput = useRef();
@@ -19,6 +36,17 @@ const Register = () => {
   const setToggleShowHandler = (e) => {
     e.preventDefault();
     setToggleShow(!toggleShow);
+  };
+
+  const btnPhoneHandler = (e) => {
+    e.preventDefault();
+    setShowDropDown(!showDropdown);
+  };
+
+  const selectedPhoneHandler = (e, data) => {
+    e.preventDefault();
+    setDdlVal(data);
+    setShowDropDown(false);
   };
 
   const loginHandler = (e) => {
@@ -106,6 +134,76 @@ const Register = () => {
             {!isValidEmail && (
               <span className="text-red">*Email tidak boleh kosong</span>
             )}
+          </div>
+          <div className="flex flex-col items-start mb-3">
+            <label htmlFor="phone">
+              No. Hp <span className="text-red">*</span>
+            </label>
+            <div className="grid grid-cols-3 w-full gap-3">
+              <div className="col-span-1 relative">
+                <button
+                  onClick={btnPhoneHandler}
+                  className="flex items-center gap-3 border rounded-md p-2 w-full"
+                >
+                  <img
+                    src={ddlVal.flag}
+                    alt={ddlVal.country}
+                    className="w-[20px] h-[20px]"
+                  />
+                  <div className="flex justify-between items-center w-full">
+                    <span>{ddlVal.code}</span>
+                    <i className="fa-solid fa-chevron-down"></i>
+                  </div>
+                </button>
+                <ul
+                  className={`absolute top-10 end-0 w-full border bg-white z-10  ${
+                    showDropdown ? "" : "hidden"
+                  }`}
+                >
+                  <li className="hover:bg-slate-300">
+                    <button
+                      onClick={(e) =>
+                        selectedPhoneHandler(e, {
+                          code: "+62",
+                          flag: Indonesia,
+                          country: "Indonesia",
+                        })
+                      }
+                      className="flex items-center gap-3  rounded-md p-2 w-full"
+                    >
+                      <img
+                        src={Indonesia}
+                        alt="Indonesia"
+                        className="w-[20px] h-[20px]"
+                      />
+                      <span>+62</span>
+                    </button>
+                  </li>
+                  <li className="hover:bg-slate-300">
+                    <button
+                      onClick={(e) =>
+                        selectedPhoneHandler(e, {
+                          code: "+65",
+                          flag: Singapore,
+                          country: "Singapore",
+                        })
+                      }
+                      className="flex items-center gap-3  rounded-md p-2 w-full"
+                    >
+                      <img
+                        src={Singapore}
+                        alt="Singapore"
+                        className="w-[20px] h-[20px]"
+                      />
+                      <span>+65</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-span-2 border rounded-md">
+                <input type="number" name="phone" id="phone" />
+              </div>
+            </div>
           </div>
           <div className="flex flex-col items-start mb-3 relative">
             <label htmlFor="password">
