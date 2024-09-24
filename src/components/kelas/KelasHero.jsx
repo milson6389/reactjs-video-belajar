@@ -1,7 +1,7 @@
 const KelasHero = () => {
   return (
     <div className="hero rounded-md flex flex-col justify-center items-center text-center my-5">
-      <div className="flex flex-col items-center text-2xl text-white gap-5 w-3/5">
+      <div className="flex flex-col items-center text-2xl text-white gap-5 md:w-3/5">
         <h1 className="font-bold text-2xl md:text-5xl">
           Revolusi Pembelajaran: Temukan Ilmu Baru melalui Platform Video
           Interaktif!

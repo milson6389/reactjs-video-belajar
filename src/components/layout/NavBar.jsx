@@ -89,7 +89,7 @@ const NavBar = () => {
                 <img
                   src={Profile}
                   alt="profile"
-                  className="w-[50px] h-[50px] relative"
+                  className="w-[50px] h-[50px] rounded-md relative"
                 />
               </button>
               <ul

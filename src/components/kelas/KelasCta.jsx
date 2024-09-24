@@ -10,15 +10,27 @@ const KelasCta = () => {
           Daftarkan dirimu untuk mendapatkan informasi terbaru dan penawaran
           spesial dari program-program terbaik hariesok.id
         </p>
-        <div className="mt-4 w-full relative">
+        <div className="mt-4 w-full md:hidden">
           <input
-            className="rounded-md px-5 py-2 w-3/4"
+            className="rounded-md px-5 py-2 w-3/4 text-sm text-center"
+            type="email"
+            name="emailCtaMobile"
+            id="emailCtaMobile"
+            placeholder="Masukkan Emailmu"
+          />
+          <button className="bg-warning text-white text-sm md:absolute md:top-1 md:end-28 rounded-md px-2 py-1 w-3/4 mt-3">
+            Subscribe
+          </button>
+        </div>
+        <div className="hidden md:block mt-4 w-full md:relative">
+          <input
+            className="rounded-md px-4 py-2 w-3/4"
             type="email"
             name="emailCta"
             id="emailCta"
             placeholder="Masukkan Emailmu"
           />
-          <button className="bg-warning text-white absolute top-1 end-28 rounded-md px-2 py-1">
+          <button className="bg-warning text-white md:absolute top-1 end-28 rounded-md px-2 py-1">
             Subscribe
           </button>
         </div>

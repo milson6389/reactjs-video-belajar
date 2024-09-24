@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import FooterLinksMobile from "./FooterLinksMobile";
 
 const FooterLinks = ({ data }) => {
   return (
@@ -20,14 +22,11 @@ const FooterLinks = ({ data }) => {
         })}
       </div>
       <div className="flex flex-col md:hidden gap-5">
-        <ul className="relative">
+        <ul className="flex flex-col relative">
           {data.map((dt) => {
             return (
-              <li key={dt.uid} className="flex justify-between font-bold my-2">
-                {dt.header}
-                <button>
-                  <i className="fa-solid fa-greater-than"></i>
-                </button>
+              <li key={dt.uid} className="flex flex-col justify-between my-1">
+                <FooterLinksMobile data={dt} />
               </li>
             );
           })}
