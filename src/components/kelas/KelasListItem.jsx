@@ -3,7 +3,7 @@ import CardProfile from "../../assets/img/profile.png";
 
 const KelasListItem = ({ kelas }) => {
   return (
-    <div className="border rounded-md p-3 flex flex-col gap-2">
+    <div className="border rounded-md p-3 flex flex-col gap-2 hover:scale-105">
       <div className="flex md:flex-col justify-between items-start gap-2">
         <img
           src={CardImg}

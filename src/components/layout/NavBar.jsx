@@ -26,7 +26,7 @@ const NavBar = () => {
   };
 
   return (
-    <header className="relative px-5 py-2 bg-white h-fit">
+    <header className="sticky top-0 px-5 py-2 bg-white h-fit">
       <nav className="md:hidden">
         <div className="z-10 mx-5">
           <div className="flex justify-between items-center">
