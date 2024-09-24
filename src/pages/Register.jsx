@@ -21,6 +21,7 @@ const Register = () => {
   const [toggleShow, setToggleShow] = useState(false);
   const [isValidName, setIsValidName] = useState(true);
   const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPhone, setIsValidPhone] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [isValidPassword2, setIsValidPassword2] = useState(true);
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
@@ -29,6 +30,7 @@ const Register = () => {
 
   const namaInput = useRef();
   const emailInput = useRef();
+  const phoneInput = useRef();
   const passwordInput = useRef();
   const password2Input = useRef();
   const navigate = useNavigate();
@@ -53,24 +55,28 @@ const Register = () => {
     e.preventDefault();
     setIsValidName(true);
     setIsValidEmail(true);
+    setIsValidPhone(true);
     setIsValidPassword(true);
     setIsPasswordMatch(true);
 
     const nameVal = namaInput.current.value.trim();
     const emailVal = emailInput.current.value.trim();
+    const phoneVal = phoneInput.current.value;
     const passVal = passwordInput.current.value.trim();
     const pass2Val = password2Input.current.value.trim();
 
     if (
-      emailVal !== "" &&
-      passVal !== "" &&
       nameVal !== "" &&
+      emailVal !== "" &&
+      !isNaN(phoneVal) &&
+      passVal !== "" &&
       pass2Val == passVal
     ) {
       const tempUser = {
         uid: +new Date(),
         nama: nameVal,
         email: emailVal,
+        phone: `${ddlVal.code}${phoneVal}`,
       };
       localStorage.setItem("user", JSON.stringify(tempUser));
       navigate("/");
@@ -81,6 +87,9 @@ const Register = () => {
       if (emailVal == "") {
         setIsValidEmail(false);
       }
+      if (phoneVal == "" || phoneVal == 0 || isNaN(phoneVal)) {
+        setIsValidPhone(false);
+      }
       if (passVal == "") {
         setIsValidPassword(false);
       }
@@ -89,6 +98,9 @@ const Register = () => {
       }
       if (passVal !== pass2Val) {
         setIsPasswordMatch(false);
+        if (pass2Val !== "") {
+          setIsValidPassword2(true);
+        }
       }
     }
   };
@@ -128,7 +140,6 @@ const Register = () => {
               name="email"
               id="email"
               ref={emailInput}
-              // required
               className="w-full border rounded-md h-10"
             />
             {!isValidEmail && (
@@ -160,50 +171,37 @@ const Register = () => {
                     showDropdown ? "" : "hidden"
                   }`}
                 >
-                  <li className="hover:bg-slate-300">
-                    <button
-                      onClick={(e) =>
-                        selectedPhoneHandler(e, {
-                          code: "+62",
-                          flag: Indonesia,
-                          country: "Indonesia",
-                        })
-                      }
-                      className="flex items-center gap-3  rounded-md p-2 w-full"
-                    >
-                      <img
-                        src={Indonesia}
-                        alt="Indonesia"
-                        className="w-[20px] h-[20px]"
-                      />
-                      <span>+62</span>
-                    </button>
-                  </li>
-                  <li className="hover:bg-slate-300">
-                    <button
-                      onClick={(e) =>
-                        selectedPhoneHandler(e, {
-                          code: "+65",
-                          flag: Singapore,
-                          country: "Singapore",
-                        })
-                      }
-                      className="flex items-center gap-3  rounded-md p-2 w-full"
-                    >
-                      <img
-                        src={Singapore}
-                        alt="Singapore"
-                        className="w-[20px] h-[20px]"
-                      />
-                      <span>+65</span>
-                    </button>
-                  </li>
+                  {tempPhoneData.map((temp, id) => {
+                    return (
+                      <li className="hover:bg-slate-300" key={id}>
+                        <button
+                          onClick={(e) => selectedPhoneHandler(e, temp)}
+                          className="flex items-center gap-3  rounded-md p-2 w-full"
+                        >
+                          <img
+                            src={temp.flag}
+                            alt={temp.country}
+                            className="w-[20px] h-[20px]"
+                          />
+                          <span>{temp.code}</span>
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
-              <div className="col-span-2 border rounded-md">
-                <input type="number" name="phone" id="phone" />
-              </div>
+
+              <input
+                className="col-span-2 border rounded-md px-2"
+                type="number"
+                name="phone"
+                id="phone"
+                ref={phoneInput}
+              />
             </div>
+            {!isValidPhone && (
+              <span className="text-red">*Nomor Hp tidak boleh kosong</span>
+            )}
           </div>
           <div className="flex flex-col items-start mb-3 relative">
             <label htmlFor="password">
