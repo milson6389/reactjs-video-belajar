@@ -20,21 +20,21 @@ const Login = () => {
     setIsValidEmail(true);
     setIsValidPassword(true);
 
-    if (
-      emailInput.current.value.trim() !== "" &&
-      passwordInput.current.value.trim() !== ""
-    ) {
+    const emailVal = emailInput.current.value.trim();
+    const passVal = passwordInput.current.value.trim();
+
+    if (emailVal !== "" && passVal !== "") {
       const tempUser = {
         uid: +new Date(),
-        email: emailInput.current.value.trim(),
+        email: emailVal,
       };
       localStorage.setItem("user", JSON.stringify(tempUser));
       navigate("/");
     } else {
-      if (emailInput.current.value.trim() == "") {
+      if (emailVal == "") {
         setIsValidEmail(false);
       }
-      if (passwordInput.current.value.trim() == "") {
+      if (passVal == "") {
         setIsValidPassword(false);
       }
     }
