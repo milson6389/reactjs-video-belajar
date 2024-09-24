@@ -52,7 +52,7 @@ const NavBar = () => {
         </div>
         {isLoggedIn && (
           <ul
-            className={`w-screen absolute top-0 start-0 toggleMenu flex flex-col justify-center gap-5 px-14 py-3 rounded-md border border-gray-100 bg-white shadow-lg  ${
+            className={`w-screen z-10 absolute top-0 start-0 toggleMenu flex flex-col justify-center gap-5 px-14 py-3 rounded-md border border-gray-100 bg-white shadow-lg  ${
               isMobile ? "translate-y-11" : "-translate-y-96"
             }`}
           >
@@ -93,20 +93,20 @@ const NavBar = () => {
                 />
               </button>
               <ul
-                className={`toggleMenu absolute end-0 mt-2 w-56 rounded-md border border-gray-100 bg-white shadow-lg ${
+                className={`toggleMenu absolute z-10 end-0 mt-2 w-56 rounded-md border border-gray-100 bg-white shadow-lg ${
                   isActive ? "" : "hidden"
                 }`}
               >
-                <li className="p-4">
+                <li className="p-4 hover:bg-slate-300">
                   <a href="/">Profil Saya</a>
                 </li>
-                <li className="p-4">
+                <li className="p-4 hover:bg-slate-300">
                   <a href="/">Kelas Saya</a>
                 </li>
-                <li className="p-4">
+                <li className="p-4 hover:bg-slate-300">
                   <a href="/">Pesanan Saya</a>
                 </li>
-                <li className="p-4">
+                <li className="p-4 hover:bg-slate-300">
                   <button onClick={logoutHandler} className="text-red">
                     Keluar
                     <i className="mx-1 fa-solid fa-arrow-right-from-bracket"></i>
