@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
 import Profile from "../../assets/img/profile.png";
@@ -52,21 +52,21 @@ const NavBar = () => {
         </div>
         {isLoggedIn && (
           <ul
-            className={`w-screen z-10 absolute top-0 start-0 toggleMenu flex flex-col justify-center gap-5 px-14 py-3 rounded-md border border-gray-100 bg-white shadow-lg  ${
+            className={`w-screen z-10 absolute top-0 start-0 toggleMenu flex flex-col justify-center gap-5 px-10 py-3 rounded-md border border-gray-100 bg-white shadow-lg  ${
               isMobile ? "translate-y-11" : "-translate-y-96"
             }`}
           >
             <li>
-              <a href="/">Kategori</a>
+              <Link to="/">Kategori</Link>
             </li>
             <li>
-              <a href="/">Profil Saya</a>
+              <Link to="/">Profil Saya</Link>
             </li>
             <li>
-              <a href="/">Kelas Saya</a>
+              <Link to="/">Kelas Saya</Link>
             </li>
             <li>
-              <a href="/">Pesanan Saya</a>
+              <Link to="/">Pesanan Saya</Link>
             </li>
             <li>
               <button onClick={logoutHandler} className="text-red">
@@ -83,7 +83,7 @@ const NavBar = () => {
         </Link>
         {isLoggedIn ? (
           <div className="flex items-center gap-5">
-            <a href="/">Kategori</a>
+            <Link to="/">Kategori</Link>
             <div className="relative">
               <button onClick={setIsActiveHandler}>
                 <img
@@ -98,13 +98,13 @@ const NavBar = () => {
                 }`}
               >
                 <li className="p-4 hover:bg-slate-300">
-                  <a href="/">Profil Saya</a>
+                  <Link to="/">Profil Saya</Link>
                 </li>
                 <li className="p-4 hover:bg-slate-300">
-                  <a href="/">Kelas Saya</a>
+                  <Link to="/">Kelas Saya</Link>
                 </li>
                 <li className="p-4 hover:bg-slate-300">
-                  <a href="/">Pesanan Saya</a>
+                  <Link to="/">Pesanan Saya</Link>
                 </li>
                 <li className="p-4 hover:bg-slate-300">
                   <button onClick={logoutHandler} className="text-red">
